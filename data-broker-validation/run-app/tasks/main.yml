@@ -1,6 +1,6 @@
 ---
 - shell: python app.py
   environment:
-    PATH: "{{ ansible_env.PATH }}:/data-act-core:/data-act-validator"
+    PATH: "{{ ansible_env.PATH }}:/data-act/core:/data-act/validator"
   args:
     chdir: /data-act-validator

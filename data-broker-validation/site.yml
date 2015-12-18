@@ -7,4 +7,4 @@
   - yum-installs
   - pull-repo
   - pip-install
-  - add-path
+  - run-app

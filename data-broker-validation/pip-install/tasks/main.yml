@@ -1,3 +1,3 @@
 ---
- - name: Install packages based on package.json.
-   pip: chdir=/data-act-broker-validator requirements="requirements.txt"
+ - name: Install packages based on requirements.txt.
+   pip: chdir=/data-act-validator requirements="requirements.txt"

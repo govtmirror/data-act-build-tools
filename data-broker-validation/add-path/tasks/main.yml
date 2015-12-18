@@ -1,4 +1,3 @@
 ---
 - name: Add to path
-  environment: 
-    PATH: $PATH:/data-act-core:/data-act-validator
+  command: python addToPath

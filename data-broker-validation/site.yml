@@ -4,6 +4,6 @@
   sudo: true
   sudo_user: 
   roles:
-  - install-git
+  - yum-installs
   - pull-repo
   - pip-install

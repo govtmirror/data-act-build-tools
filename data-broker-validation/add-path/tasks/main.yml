@@ -1,3 +1,4 @@
 ---
 - name: Add to path
-  command: PATH=$PATH:/data-act-core:/data-act-validator
+  environment: 
+    PATH: $PATH:/data-act-core:/data-act-validator

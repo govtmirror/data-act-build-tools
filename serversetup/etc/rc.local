@@ -1,4 +1,4 @@
-!/bin/sh
+#!/bin/sh
 
 # /etc/rc.local
 # This script will be executed on boot after all other scripts
@@ -10,7 +10,7 @@ exec 1>&2
 set -x
 
 #Start the initial playbook to pull the repo
-/usr/local/bin/ansible-playbook -i  "localhost" -c local /startup/start.yml
+/usr/local/bin/ansible-playbook -i  "localhost," -c local /startup/start.yml
 
 #export the path of host file
 export ANSIBLE_HOSTS=/startup/hosts

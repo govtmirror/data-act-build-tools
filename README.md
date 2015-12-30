@@ -6,6 +6,6 @@ To install ansible, run:
 
     sudo pip install ansible
 
-To run the web app, change to the data-broker-web-app directory within the repo and run:
+To run the web app, run:
 
-    sudo ansible-playbook site-dev.yml -i "hosts" --private-key={path to pem file} -u ubuntu --extra-vars "branch={branch name}"
+    sudo ansible-playbook data-broker-web-app/site-dev.yml -i "data-broker-web-app/hosts" --private-key={path to pem file} -u ubuntu --extra-vars "branch={branch name}"

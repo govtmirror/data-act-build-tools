@@ -1,5 +1,11 @@
 ---
-- shell: python app.py
+- shell: python app.py &
+  environment:
+    PYTHONPATH: "{{ ansible_env.PYTHONPATH }}:/data-act/core:/data-act/validator"
+  args:
+    chdir: /data-act/validator
+
+- shell: python /data-act/validator/tests/jobTests.py &
   environment:
     PYTHONPATH: "{{ ansible_env.PYTHONPATH }}:/data-act/core:/data-act/validator"
   args:

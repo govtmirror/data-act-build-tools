@@ -1,0 +1,5 @@
+---
+- shell: aws s3 cp s3://dev-data-act-submission/config/dbCred.json /data-act/core/dataactcore/credentials/dbCred.json
+
+- shell: aws s3 cp s3://dev-data-act-submission/config/s3bucket.json /data-act/core/dataactcore/aws/s3bucket.json
+  

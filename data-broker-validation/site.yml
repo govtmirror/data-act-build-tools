@@ -7,4 +7,5 @@
   - yum-installs
   - pull-repo
   - pip-install
+  - copy-files
   - run-app

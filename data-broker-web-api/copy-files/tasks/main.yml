@@ -5,4 +5,6 @@
 
 - shell: aws s3 cp s3://dev-data-act-submission/config/credentials.json /data-act/web-api/app/credentials.json
 
+- shell: aws s3 cp s3://dev-data-act-submission/config/manager.json /data-act/web-api/app/manager.json
+
   

@@ -18,11 +18,11 @@ export ANSIBLE_HOSTS=/startup/hosts
 
 #This section selects which playbook to use
 
-SERVER_TYPE="WEB_API"
+SERVER_TYPE="NONE"
 
 if [ "$SERVER_TYPE" == "WEB_API" ]; then
 
-      /usr/local/bin/ansible-playbook -i /startup/hosts -c local /data-act/install/data-broker-validation/site.yml
+      /usr/local/bin/ansible-playbook -i /startup/hosts -c local /data-act/install/data-broker-web-api/site.yml
 
 elif [ "$SERVER_TYPE" == "WEB" ]; then
 

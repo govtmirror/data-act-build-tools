@@ -7,4 +7,4 @@
 
 - shell: aws s3 cp s3://dev-data-act-submission/config/manager.json /data-act/web-api/app/manager.json
 
-- shell: aws s3 cp s3://dev-data-act-submission/config/web_api_configuration.json /data-act/web-api/app/web_api_configuration.json
+- shell: aws s3 cp s3://dev-data-act-submission/config/web_api_configuration.json /data-act/web-api/web_api_configuration.json

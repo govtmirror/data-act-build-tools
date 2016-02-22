@@ -1,6 +1,6 @@
 ---
 - shell: python app.py &
   environment:
-    PYTHONPATH: "{{ ansible_env.PYTHONPATH }}:/data-act/core:/data-act/web-api:/data-act/web-api/app"
+    PYTHONPATH: "{{ ansible_env.PYTHONPATH }}:/data-act/core:/data-act/web-api"
   args:
-    chdir: /data-act/web-api/app
+    chdir: /data-act/web-api/dataactbroker

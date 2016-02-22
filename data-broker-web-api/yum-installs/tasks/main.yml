@@ -8,3 +8,5 @@
   yum: name=gcc
 - name: install emacs
   yum: name=emacs
+- name: install libffi-devel
+  yum: name=libffi-devel

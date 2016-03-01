@@ -3,9 +3,11 @@
 
 - shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/s3bucket.json /data-act/core/dataactcore/aws/s3bucket.json"
 
+- shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/logging.json /data-act/core/dataactcore/utils/logging.json"
+
 - shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/credentials.json /data-act/web-api/dataactbroker/credentials.json"
 
 - shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/manager.json /data-act/web-api/dataactbroker/manager.json"
 
-- shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/web_api_configuration.json /data-act/web-api/dataactbroker/web_api_configuration.json"
+- shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/web_api_configuration.json /data-act/web-api/dataactbroker/config/web_api_configuration.json"
 

@@ -3,7 +3,7 @@
 - name: install git
   yum: name=git
 - name: install postgres libraries
-  yum: name=postgresql94-devel.x86_64
+  yum: name=postgresql-devel.x86_64
 - name: install gcc
   yum: name=gcc
 - name: install emacs

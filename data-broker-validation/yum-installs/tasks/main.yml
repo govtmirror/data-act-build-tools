@@ -8,6 +8,8 @@
   yum: name=gcc
 - name: install emacs
   yum: name=emacs
+- name: install libffi-devel
+  yum: name=libffi-devel
 - name: install pip
   yum: name=python-pip
 - name: install python development libraries

@@ -1,0 +1,8 @@
+---
+- shell: nginx
+- shell: uwsgi --ini validator_configuration.ini &
+  sudo: false
+  environment:
+    PYTHONPATH: "{{ ansible_env.PYTHONPATH }}:/data-act/core:/data-act/validator"
+  args:
+    chdir: /data-act/validator/dataactvalidator/uwsgi/

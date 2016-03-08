@@ -8,3 +8,13 @@
   yum: name=gcc
 - name: install emacs
   yum: name=emacs
+- name: install pip
+  yum: name=python-pip
+- name: install python development libraries
+  yum: name=python-devel.x86_64
+- name: install nginx
+  yum: name=nginx
+- name: install PCRE for uwsgi
+  yum: name=pcre.x86_64
+- name: install PCRE development library
+  yum: name=pcre-devel.x86_64

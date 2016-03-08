@@ -8,4 +8,4 @@
   - pull-repo
   - pip-install
   - copy-files
-  - run-app
+  - start-server

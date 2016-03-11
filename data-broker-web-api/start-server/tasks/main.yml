@@ -1,5 +1,6 @@
 ---
 - shell: supervisord -c /data-act/web-api/dataactbroker/config/supervisord.conf &
+  sudo: true
   environment:
     PYTHONPATH: "{{ ansible_env.PYTHONPATH }}:/data-act/core:/data-act/web-api"
   args:

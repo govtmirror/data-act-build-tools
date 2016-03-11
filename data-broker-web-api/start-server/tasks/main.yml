@@ -1,7 +1,6 @@
 ---
-- shell: nginx
-- shell: uwsgi --ini broker_configuration.ini &
+- shell: supervisord -c /data-act/web-api/dataactbroker/config/supervisord.conf &
   environment:
     PYTHONPATH: "{{ ansible_env.PYTHONPATH }}:/data-act/core:/data-act/web-api"
   args:
-    chdir: /data-act/web-api/dataactbroker/uwsgi/
+    chdir: /data-act/web-api/dataactbroker/

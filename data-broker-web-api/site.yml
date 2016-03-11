@@ -1,8 +1,6 @@
 ---
 - hosts: data_validator_dev
   user: ec2-user
-  sudo: true
-  sudo_user: 
   roles:
   - yum-installs
   - pull-repo

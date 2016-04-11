@@ -1,6 +1,17 @@
 ---
-- shell: python app.py &
+- service: name=rabbitmq-server state=started
+- rabbitmq_user: user={{ rmqUser }}
+                 password={{ rmqPass }}
+                 vhost=/
+                 configure_priv=.*
+                 read_priv=.*
+                 write_priv=.*
+                 state=present
+- shell: celery -A jobQueue worker --loglevel=info --logfile=/tmp/job-queue.log --concurrency=1 --detach
+  become: true
+  become_user: ec2-user
+  become_method: sudo
   environment:
-    PYTHONPATH: "{{ ansible_env.PYTHONPATH }}:/data-act/core:/data-act/web-api"
+    PYTHONPATH: "/data-act/core"
   args:
-    chdir: /data-act/web-api/dataactbroker
+    chdir: /data-act/core/dataactcore/utils/

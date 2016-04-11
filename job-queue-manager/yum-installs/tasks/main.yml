@@ -1,12 +1,17 @@
 ---
-
 - name: install git
   yum: name=git
-- name: install postgres libraries
-  yum: name=postgresql94-devel.x86_64
+- name: install erlang
+  yum: name=http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+- name: install rabbitmq
+  yum: name=http://www.rabbitmq.com/releases/rabbitmq-server/v3.6.1/rabbitmq-server-3.6.1-1.noarch.rpm
+- name: install python
+  yum: name=python-devel
+- name: install pip
+  yum: name=python-pip
+- name: install wheel
+  yum: name=python-wheel
+- name: install postgres
+  yum: name=postgresql-devel
 - name: install gcc
   yum: name=gcc
-- name: install emacs
-  yum: name=emacs
-- name: install libffi-devel
-  yum: name=libffi-devel

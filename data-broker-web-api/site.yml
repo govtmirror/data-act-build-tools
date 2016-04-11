@@ -8,3 +8,4 @@
   - copy-files
   - update-schema
   - start-server
+  - new-relic

@@ -6,5 +6,6 @@
   - pull-repo
   - pip-install
   - copy-files
-  - update-schema
+
   - start-server
+  - new-relic

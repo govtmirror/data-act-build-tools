@@ -1,0 +1,3 @@
+---
+ - name: Install packages based on requirements.txt.
+   pip: chdir=/data-act/web-api requirements="requirements.txt"

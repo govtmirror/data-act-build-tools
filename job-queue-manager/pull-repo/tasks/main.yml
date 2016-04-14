@@ -1,3 +1,3 @@
 ---
 - name: Checkout core from git
-  git: repo=https://github.com/fedspendingtransparency/data-act-core.git version=job-queue-feature dest=/data-act/core accept_hostkey=true force=yes
+  git: repo=https://github.com/fedspendingtransparency/data-act-core.git version=development dest=/data-act/core accept_hostkey=true force=yes

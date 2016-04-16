@@ -4,7 +4,6 @@
 - shell: pkill supervisord
   sudo: true
   ignore_errors: yes
-- shell: restorecon -v -R /config
 - shell: supervisord -c /data-act/web-api/dataactbroker/config/supervisord.conf &
   sudo: true
   environment:

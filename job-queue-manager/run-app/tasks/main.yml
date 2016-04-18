@@ -10,7 +10,6 @@
                  state=present
   sudo: true
 - shell: pkill -f "celery worker"
-  sudo: true
   ignore_errors: yes
 - shell: celery -A jobQueue worker --loglevel=info --logfile=/tmp/job-queue.log --concurrency=10 --detach
   environment:

@@ -1,5 +1,5 @@
 ---
-- hosts: job-queue-server
+- hosts: data_job_manager_govcloud_dev
   user: ec2-user
   roles:
   - yum-installs

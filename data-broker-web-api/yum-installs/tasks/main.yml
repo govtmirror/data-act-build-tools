@@ -1,6 +1,4 @@
 ---
-- name: restore sec contect for certs
-  shell: restorecon -v -R /config
 - name: install git
   sudo: true
   yum: name=git

@@ -1,4 +1,9 @@
 ---
+- service: name=logstash state=stopped
+  ignore_errors: yes
+- service: name=logstash state=started
+  ignore_errors: yes
+  sudo: true
 - service: name=rabbitmq-server state=started
   sudo: true
 - rabbitmq_user: user={{ rmqUser }}

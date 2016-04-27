@@ -1,9 +1,5 @@
 ---
-- service: name=logstash state=stopped
-  ignore_errors: yes
-- service: name=logstash state=started
-  ignore_errors: yes
-  sudo: true
+- shell: /opt/logstash/bin/logstash -f /data-act/data-act-logging.conf &
 - shell: setsebool -P httpd_can_network_connect=1
   sudo: true
 - shell: pkill supervisord

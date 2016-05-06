@@ -29,3 +29,4 @@
   sudo: true
 - name: install repo
   yum: name=logstash
+  sudo: true

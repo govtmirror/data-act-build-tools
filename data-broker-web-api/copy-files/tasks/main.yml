@@ -5,5 +5,5 @@
 - shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/nginxApi.conf /etc/nginx/nginx.conf --region us-gov-west-1"
   sudo: true
 
-- shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/data-act-logging.conf /data-act/data-act-logging.conf --region us-gov-west-1"
+- shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/data-act-logging-api.conf /data-act/data-act-logging.conf --region us-gov-west-1"
   sudo: true

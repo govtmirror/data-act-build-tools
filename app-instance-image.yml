@@ -4,3 +4,4 @@
   roles:
   - pull-repo
   - pip-install
+  - add-hostfile

@@ -3,3 +3,4 @@
   user: ec2-user
   roles:
   - base-image-installs
+  - disable-requiretty

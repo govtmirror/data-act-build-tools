@@ -9,6 +9,6 @@
 - shell: supervisord -c /data-act/backend/dataactvalidator/config/supervisord.conf &
   sudo: true
   environment:
-    PYTHONPATH: "{{ ansible_env.PYTHONPATH }}:/data-act/backend"
+    PYTHONPATH: "/data-act/backend"
   args:
     chdir: /data-act/backend/dataactvalidator/

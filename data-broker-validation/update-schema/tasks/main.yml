@@ -6,3 +6,19 @@
     PYTHONPATH: "/data-act/backend"
   args:
     chdir: /data-act/backend/dataactcore
+
+- name: load field definitions
+  shell: python /data-act/backend/dataactvalidator/filestreaming/schemaLoader.py
+  sudo: true
+  environment:
+    PYTHONPATH: "/data-act/backend"
+  args:
+    chdir: /data-act/backend/dataactvalidator/filestreaming/
+
+- name: load TAS file
+  shell: python /data-act/backend/dataactvalidator/scripts/loadTas.py
+  sudo: true
+  environment:
+    PYTHONPATH: "/data-act/backend"
+  args:
+    chdir: /data-act/backend/dataactvalidator/scripts/

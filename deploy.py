@@ -7,8 +7,11 @@ import json
 def deploy():
 
 	# set packer path
-	packer_file = '/var/lib/jenkins/hosts/packer.json'
+	packer_file = 'packer.json'
+	tfvar_file = 'variables.tf.json'
 	packer_exec_path = '/packer/packerio'
+	tf_exec_path = '/terraform/terraform'
+
 
 	# Set connection
 	print('Connecting to AWS via region us-gov-west-1...')
@@ -24,8 +27,8 @@ def deploy():
 	print('Retrieving current base app AMI...')
 	current_base_ami = conn.get_all_images(filters={"tag:current" : "True", "tag:base" : "True", "tag:type" : "Application"})[0].id
 	print('Done. Current base app AMI: '+current_base_ami)
-	
-	# Insert current Base app AMI into packer file 
+
+	# Insert current Base app AMI into packer file
 	print('Updating Packer file with current base app AMI...')
 	update_packer_spec(packer_file, current_base_ami)
 	print('Done.')
@@ -49,13 +52,24 @@ def deploy():
 		print('Something went wrong. Packer AMI: '+ami_id+'; Tagged AMI: '+conn.get_all_images(filters={"tag:current" : "True", "tag:base" : "False", "tag:type" : "Application"})[0].id)
 
 	#Add new AMI id to terraform variables
+	update_lc_ami(ami_id, tfvar_file)
 
 	# Run terraform
+	plan_output = tf_plan(tf_exec_path)
+	print(plan_output)
+	# tf_apply()
 
 def packer_build(packer_file='packer.json', packer_exec_path='packer'):
 	cmd = sh.Command(packer_exec_path).build.bake(packer_file).bake('-machine-readable')
 	return cmd()
 
+def tf_plan(tf_exec_path):
+	cmd = sh.Command(tf_exec_path).plan
+	return cmd()
+
+def tf_apply(tf_exec_path):
+	cmd = sh.Command(tf_exec_path).apply
+	return cmd()
 
 def update_packer_spec(packer_file='packer.json', current_base_ami=''):
 	packer_json = open(packer_file, "r")
@@ -70,6 +84,18 @@ def update_packer_spec(packer_file='packer.json', current_base_ami=''):
 
 	return
 
+def update_lc_ami(new_ami='', tfvar_file='variables.tf.json'):
+	tfvar_json = open(tfvar_file, "r")
+	tfvar_data = json.load(tfvar_json)
+	tfvar_json.close()
+
+	tfvar_data['variable']['aws_amis']['default']['us-gov-west-1'] = new_ami
+
+	tfvar_json = open(tfvar_file, "w+")
+	tfvar_json.write(json.dumps(tfvar_data))
+	tfvar_json.close()
+
+	return
 
 def update_ami_tags(current_app_amis=False):
 	for ami in current_app_amis:

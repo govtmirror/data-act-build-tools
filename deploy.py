@@ -57,7 +57,8 @@ def deploy():
 	# Run terraform
 	plan_output = tf_plan(tf_exec_path)
 	print(plan_output)
-	# tf_apply()
+	apply_output = tf_apply(tf_exec_path)
+	print(apply_output)
 
 def packer_build(packer_file='packer.json', packer_exec_path='packer'):
 	cmd = sh.Command(packer_exec_path).build.bake(packer_file).bake('-machine-readable')

@@ -10,6 +10,7 @@ resource "aws_autoscaling_group" "api-asg" {
   max_size = "${var.asg_max}"
   min_size = "${var.asg_min}"
   desired_capacity = "${var.asg_desired}"
+  min_elb_capacity = "${var.asg_min}"
   launch_configuration = "${aws_launch_configuration.api-lc.name}"
   load_balancers = ["${var.api_elb}"]
   vpc_zone_identifier = ["${split(",", var.subnets)}"]
@@ -28,6 +29,7 @@ resource "aws_autoscaling_group" "val-asg" {
   max_size = "${var.asg_max}"
   min_size = "${var.asg_min}"
   desired_capacity = "${var.asg_desired}"
+  min_elb_capacity = "${var.asg_min}"
   launch_configuration = "${aws_launch_configuration.val-lc.name}"
   load_balancers = ["${var.val_elb}"]
   vpc_zone_identifier = ["${split(",", var.subnets)}"]

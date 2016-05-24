@@ -1,8 +1,15 @@
 ---
-- name: core schema update 
-  shell: python /data-act/backend/dataactcore/scripts/setupAllDB.py
+- name: broker schema update 
+  shell: python /data-act/backend/dataactbroker/scripts/initialize.py -d
   sudo: true
   environment:
     PYTHONPATH: "/data-act/backend"
   args:
-    chdir: /data-act/backend/dataactcore
+    chdir: /data-act/backend/dataactbroker/scripts/
+- name: validator schema update 
+  shell: python /data-act/backend/dataactvalidator/scripts/initialize.py -d
+  sudo: true
+  environment:
+    PYTHONPATH: "/data-act/backend"
+  args:
+    chdir: /data-act/backend/dataactvalidator/scripts/

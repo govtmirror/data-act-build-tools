@@ -16,7 +16,7 @@ resource "aws_autoscaling_group" "api-asg" {
   vpc_zone_identifier = ["${split(",", var.subnets)}"]
   tag {
     key = "Name"
-    value = "web-asg"
+    value = "${var.api_name_prefix}_${lookup(var.aws_amis, var.aws_region)}"
     propagate_at_launch = "true"
   }
   lifecycle {
@@ -35,7 +35,7 @@ resource "aws_autoscaling_group" "val-asg" {
   vpc_zone_identifier = ["${split(",", var.subnets)}"]
   tag {
     key = "Name"
-    value = "web-asg"
+    value = "${var.val_name_prefix}_${lookup(var.aws_amis, var.aws_region)}"
     propagate_at_launch = "true"
   }
   lifecycle {

@@ -2,6 +2,8 @@
 - shell: /opt/logstash/bin/logstash -f /data-act/data-act-logging.conf &
   sudo: true
 - shell: setsebool -P httpd_can_network_connect=1
+- name: start filebeat
+  shell: systemctl start filebeat
   sudo: true
 - shell: pkill supervisord
   sudo: true

@@ -1,14 +1,19 @@
 ---
-- shell: /opt/logstash/bin/logstash -f /data-act/data-act-logging.conf &
+- name: start logstash
+  shell: /opt/logstash/bin/logstash -f /data-act/data-act-logging.conf &
   sudo: true
-- shell: setsebool -P httpd_can_network_connect=1
 - name: start filebeat
   shell: systemctl start filebeat
   sudo: true
-- shell: pkill supervisord
+- name: setsebook command
+  shell: setsebool -P httpd_can_network_connect=1
+  sudo: true
+- name: kill current app process if needed
+  shell: pkill supervisord
   sudo: true
   ignore_errors: yes
-- shell: supervisord -c /data-act/backend/dataact{{ APP }}/config/supervisord.conf &
+- name: start application
+  shell: supervisord -c /data-act/backend/dataact{{ APP }}/config/supervisord.conf &
   sudo: true
   environment:
     PYTHONPATH: "/data-act/backend"

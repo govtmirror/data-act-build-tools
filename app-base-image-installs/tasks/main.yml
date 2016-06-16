@@ -29,3 +29,9 @@
     name: newrelic-sysmond
     state: latest
   sudo: true
+- name: copy filebeat repo info
+  shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/elastic-beats.repo /etc/yum.repos.d/elastic-beats.repo --region us-gov-west-1"
+  sudo: true
+- name: install filebeat repo
+  yum: name=filebeat
+  sudo: true

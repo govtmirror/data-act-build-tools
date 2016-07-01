@@ -44,5 +44,5 @@
   yum: name=logstash
   sudo: true
 - name: install python3
-  yum: name=python3\*
+  yum: name=python3*
   sudo: true

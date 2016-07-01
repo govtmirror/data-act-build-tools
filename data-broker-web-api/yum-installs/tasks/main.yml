@@ -46,3 +46,6 @@
 - name: install python3
   yum: name=python3*
   sudo: true
+- name: install pip3
+  sudo: true
+  yum: name=python3-pip

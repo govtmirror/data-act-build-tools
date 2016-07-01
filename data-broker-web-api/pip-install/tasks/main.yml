@@ -1,7 +1,7 @@
 ---
  - name: Install API packages based on requirements.txt.
    sudo: true
-   pip3: chdir=/data-act/backend requirements="requirements.txt"
+   pip: chdir=/data-act/backend requirements="requirements.txt"
  - name: Install server packages based on server_requirements.txt.
    sudo: true
-   pip2: chdir=/data-act/backend requirements="server_requirements.txt"
+   pip: chdir=/data-act/backend requirements="server_requirements.txt"

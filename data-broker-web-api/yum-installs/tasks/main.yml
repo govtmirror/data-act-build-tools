@@ -24,7 +24,7 @@
 - name: install nginx
   sudo: true
   yum: name=nginx
-- name: install pip
+- name: install pip2
   sudo: true
   yum: name=python-pip
 - name: install PCRE for uwsgi

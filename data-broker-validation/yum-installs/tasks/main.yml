@@ -48,7 +48,6 @@
   sudo: true
 - name: get pip3
   shell: "wget https://bootstrap.pypa.io/get-pip.py -P /tmp/"
-  shell: "python3 /tmp/get-pip.py"
   sudo: true
 - name: install pip3
   shell: "python3 /tmp/get-pip.py"

@@ -46,6 +46,8 @@ def deploy():
         staging_ami = conn.get_all_images(filters={"tag:current" : "True", "tag:base" : "False", "tag:type" : "Application", "tag:environment" : "staging"})[0].id
         update_lc_ami(staging_ami, 'variables.tf.json')
         print(staging_ami)
+        run_tf(tf_exec_path)
+
 
 
 
@@ -90,11 +92,14 @@ def deploy():
     # #Add new AMI id to terraform variables
     # update_lc_ami(ami_id, tfvar_file)
 
-    # # Run terraform
-    # plan_output = tf_plan(tf_exec_path)
-    # print(plan_output)
-    # apply_output = tf_apply(tf_exec_path)
-    # print(apply_output)
+def run_tf(tf_exec_path):
+    # Run terraform
+    plan_output = tf_plan(tf_exec_path)
+    print(plan_output)
+    apply_output = tf_apply(tf_exec_path)
+    print(apply_output)
+    return
+
 
 def packer_build(packer_file='packer.json', packer_exec_path='packer'):
     cmd = sh.Command(packer_exec_path).build.bake(packer_file).bake('-machine-readable')

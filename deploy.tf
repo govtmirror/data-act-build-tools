@@ -7,10 +7,10 @@ provider "aws" {
 
 resource "aws_autoscaling_group" "api-asg" {
   name = "${aws_launch_configuration.api-lc.name}"
-  max_size = "${var.asg_max}"
-  min_size = "${var.asg_min}"
-  desired_capacity = "${var.asg_desired}"
-  min_elb_capacity = "${var.asg_min}"
+  max_size = "${var.api_asg_max}"
+  min_size = "${var.api_asg_min}"
+  desired_capacity = "${var.api_asg_desired}"
+  min_elb_capacity = "${var.api_asg_min}"
   launch_configuration = "${aws_launch_configuration.api-lc.name}"
   load_balancers = ["${var.api_elb}"]
   vpc_zone_identifier = ["${split(",", var.subnets)}"]
@@ -26,10 +26,10 @@ resource "aws_autoscaling_group" "api-asg" {
 
 resource "aws_autoscaling_group" "val-asg" {
   name = "${aws_launch_configuration.val-lc.name}"
-  max_size = "${var.asg_max}"
-  min_size = "${var.asg_min}"
-  desired_capacity = "${var.asg_desired}"
-  min_elb_capacity = "${var.asg_min}"
+  max_size = "${var.val_asg_max}"
+  min_size = "${var.val_asg_min}"
+  desired_capacity = "${var.val_asg_desired}"
+  min_elb_capacity = "${var.val_asg_min}"
   launch_configuration = "${aws_launch_configuration.val-lc.name}"
   load_balancers = ["${var.val_elb}"]
   vpc_zone_identifier = ["${split(",", var.subnets)}"]
@@ -46,7 +46,7 @@ resource "aws_autoscaling_group" "val-asg" {
 resource "aws_launch_configuration" "api-lc" {
   name = "${var.api_name_prefix}_${lookup(var.aws_amis, var.aws_region)}"
   image_id = "${lookup(var.aws_amis, var.aws_region)}"
-  instance_type = "${var.instance_type}"
+  instance_type = "${var.api_instance_type}"
   iam_instance_profile = "${var.api_iam_profile}"
   # Security group
   security_groups = ["${split(",", var.api_sec_groups)}"]
@@ -60,7 +60,7 @@ resource "aws_launch_configuration" "api-lc" {
 resource "aws_launch_configuration" "val-lc" {
   name = "${var.val_name_prefix}_${lookup(var.aws_amis, var.aws_region)}"
   image_id = "${lookup(var.aws_amis, var.aws_region)}"
-  instance_type = "${var.instance_type}"
+  instance_type = "${var.val_instance_type}"
   iam_instance_profile = "${var.val_iam_profile}"
   # Security group
   security_groups = ["${split(",", var.val_sec_groups)}"]

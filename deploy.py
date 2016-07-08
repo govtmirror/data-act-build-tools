@@ -44,7 +44,7 @@ def deploy():
     elif optionsDict["prod"]:
         deploy_env = 'prod'
         staging_ami = conn.get_all_images(filters={"tag:current" : "True", "tag:base" : "False", "tag:type" : "Application", "tag:environment" : "staging"})[0].id
-        update_lc_ami(staging_ami, 'variables_prod.tf.json')
+        update_lc_ami(staging_ami, 'variables.tf.json')
         print(staging_ami)
 
 

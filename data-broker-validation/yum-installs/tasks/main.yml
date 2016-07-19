@@ -48,3 +48,6 @@
 - name: install pip3
   shell: "python3 /tmp/get-pip.py"
   sudo: true
+- name: install python34 development libraries
+  sudo: true
+  yum: name=python34-devel

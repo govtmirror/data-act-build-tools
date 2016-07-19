@@ -1,6 +1,6 @@
 ---
 - name: core schema update 
-  shell: python /data-act/backend/dataactvalidator/scripts/initialize.py -d
+  shell: python3 /data-act/backend/dataactvalidator/scripts/initialize.py -d
   sudo: true
   environment:
     PYTHONPATH: "/data-act/backend"

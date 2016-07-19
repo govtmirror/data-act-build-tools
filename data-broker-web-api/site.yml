@@ -1,10 +1,11 @@
 ---
-- hosts: data_broker_govcloud_dev
+- hosts: data_broker_govcloud_dev_python3
   user: ec2-user
   roles:
   - yum-installs
   - pull-repo
   - pip-install
+  - install-logstash
   - copy-files
   - update-schema
   - start-server

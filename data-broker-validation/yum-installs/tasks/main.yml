@@ -24,7 +24,7 @@
 - name: install nginx
   sudo: true
   yum: name=nginx
-- name: install pip
+- name: install pip2
   sudo: true
   yum: name=python-pip
 - name: install PCRE for uwsgi
@@ -37,7 +37,7 @@
   sudo: true
   yum: name=java-1.7.0-openjdk
 - name: install python3
-  yum: name=python3*
+  yum: name=python34
   sudo: true
 - name: get pip3
   shell: "wget https://bootstrap.pypa.io/get-pip.py -P /tmp/"

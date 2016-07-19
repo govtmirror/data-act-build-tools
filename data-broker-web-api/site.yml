@@ -5,6 +5,7 @@
   - yum-installs
   - pull-repo
   - pip-install
+  - install-logstash
   - copy-files
   - update-schema
   - start-server

@@ -36,6 +36,9 @@
 - name: install java
   sudo: true
   yum: name=java-1.7.0-openjdk
+- name: install wget
+  yum: name=wget
+  sudo: true
 - name: install python3
   yum: name=python34
   sudo: true

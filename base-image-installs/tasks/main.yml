@@ -3,6 +3,9 @@
 - name: install git
   sudo: true
   yum: name=git
+- name: install wget
+  yum: name=wget
+  sudo: true
 - name: install python development libraries
   sudo: true
   yum: name=python-devel.x86_64
@@ -13,7 +16,7 @@
   sudo: true
   yum: name=python-pip
 - name: install python3
-  yum: name=python3*
+  yum: name=python34
   sudo: true
 - name: get pip3
   shell: "wget https://bootstrap.pypa.io/get-pip.py -P /tmp/"
@@ -31,11 +34,11 @@
   shell: "rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch"
   shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/logstash.repo /etc/yum.repos.d/logstash.repo --region us-gov-west-1"
   sudo: true
+- name: install python34 development libraries
+  sudo: true
+  yum: name=python34-devel
 - name: install logstash repo
   yum: name=logstash
-  sudo: true
-- name: install wget
-  yum: name=wget
   sudo: true
 - name: install unzip
   yum: name=unzip

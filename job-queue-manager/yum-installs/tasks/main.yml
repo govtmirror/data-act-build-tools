@@ -26,6 +26,12 @@
 - name: install gcc
   sudo: true
   yum: name=gcc
+- name: install wget
+  yum: name=wget
+  sudo: true
+- name: install aws cli
+  pip: name=awscli
+  sudo: true
 - name: copy logstash repo info
   shell: "rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch"
   shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/logstash.repo /etc/yum.repos.d/logstash.repo --region us-gov-west-1"
@@ -34,7 +40,7 @@
   yum: name=logstash
   sudo: true
 - name: install python3
-  yum: name=python3*
+  yum: name=python34
   sudo: true
 - name: get pip3
   shell: "wget https://bootstrap.pypa.io/get-pip.py -P /tmp/"
@@ -42,3 +48,6 @@
 - name: install pip3
   shell: "python3 /tmp/get-pip.py"
   sudo: true
+- name: install python34 development libraries
+  sudo: true
+  yum: name=python34-devel

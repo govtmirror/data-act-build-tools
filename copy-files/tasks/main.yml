@@ -22,3 +22,7 @@
 - name: assign ownership of cert.key to ec2-user
   sudo: true
   file: path=/{{ PATH }}/cert.key owner=ec2-user
+
+- name: copy filebeat certs
+  shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/logstash-forwarder.crt /etc/pki/tls/certs/logstash-forwarder.crt --region us-gov-west-1"
+  sudo: true

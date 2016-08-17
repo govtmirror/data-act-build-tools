@@ -1,6 +1,10 @@
 ---
 - shell: /opt/logstash/bin/logstash -f /data-act/data-act-logging.conf &
 - name: start filebeat
+  shell: systemctl stop filebeat
+  sudo: true
+  ignore_errors: yes
+- name: start filebeat
   shell: systemctl start filebeat
   sudo: true
 - shell: setsebool -P httpd_can_network_connect=1

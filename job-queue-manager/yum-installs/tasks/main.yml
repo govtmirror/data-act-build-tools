@@ -26,6 +26,9 @@
 - name: install gcc
   sudo: true
   yum: name=gcc
+- name: install gcc-c++
+  sudo: true
+  yum: name=gcc-c++
 - name: install wget
   yum: name=wget
   sudo: true

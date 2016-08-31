@@ -7,6 +7,7 @@
     - pip-install
     - install-logstash
     - copy-files
+    - fsrs-cron
     - run-app
   environment:
     env: "{{ ENV }}"

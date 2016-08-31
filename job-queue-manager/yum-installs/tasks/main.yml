@@ -54,3 +54,6 @@
 - name: install python34 development libraries
   sudo: true
   yum: name=python34-devel
+- name: install cron
+  sudo: true
+  yum: name=cronie

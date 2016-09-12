@@ -5,5 +5,5 @@
   sudo: true
 - shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/logstash-forwarder.crt /etc/pki/tls/certs/logstash-forwarder.crt --region us-gov-west-1"
   sudo: true
-- shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/filebeat-dev-jobmgr.yml /etc/filebeat/filebeat.yml --region us-gov-west-1"
+- shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/filebeat-staging-jobmgr.yml /etc/filebeat/filebeat.yml --region us-gov-west-1"
   sudo: true

@@ -1,0 +1,7 @@
+---
+- hosts: govcloud_instance_launch
+  user: ec2-user
+  roles:
+  - copy-jobmgr-files
+  - start-jobmgr
+  - start-new-relic

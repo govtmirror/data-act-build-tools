@@ -23,8 +23,10 @@
   ignore_errors: yes
   args:
     chdir: /data-act/backend/dataactcore/utils/
+- shell: echo $env
 - shell: celery -A jobQueue worker --loglevel=info --logfile=/tmp/job-queue.log --concurrency=10 --detach
   environment:
     PYTHONPATH: "/data-act/backend"
+    env: "{{ ENV }}"
   args:
     chdir: /data-act/backend/dataactcore/utils/

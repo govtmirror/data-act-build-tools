@@ -1,13 +1,13 @@
 ---
-
-- shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/config.yml /data-act/backend/dataactcore/config.yml --region us-gov-west-1"
-
-- shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/nginxApi.conf /etc/nginx/nginx.conf --region us-gov-west-1"
+- name: Copy core config
+  shell:  cp /data-act/config/backend/config.yml /data-act/backend/dataactcore/config.yml 
+- name: Copy ENV config
+  shell: cp /data-act/config/backend/{{ ENV }}_config.yml /data-act/backend/dataactcore/{{ ENV }}_config.yml
+- name: Copy secrets
+  shell: "aws s3 cp s3://da-config/{{ ENV }}_secrets.yml /data-act/backend/dataactcore/{{ ENV }}_secrets.yml --region us-gov-west-1"
+- name: Copy Filebeat config
+  shell: cp /data-act/config/filebeat/filebeat-{{ ENV }}-{{ APP }}.yml /etc/filebeat/filebeat.yml
   sudo: true
-
-- shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/data-act-logging-api.conf /data-act/data-act-logging.conf --region us-gov-west-1"
-  sudo: true
-- shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/logstash-forwarder.crt /etc/pki/tls/certs/logstash-forwarder.crt --region us-gov-west-1"
-  sudo: true
-- shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/filebeat-dev-broker.yml /etc/filebeat/filebeat.yml --region us-gov-west-1"
+- name: Copy Filebeat config
+  shell: cp /data-act/config/filebeat/nginx-{{ ENV }}-{{ APP }}.conf /etc/nginx/nginx.conf 
   sudo: true

@@ -17,5 +17,6 @@
   sudo: true
   environment:
     PYTHONPATH: "/data-act/backend"
+    env: {{ ENV }}
   args:
     chdir: /data-act/backend/dataactvalidator/

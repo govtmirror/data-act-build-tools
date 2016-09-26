@@ -11,4 +11,4 @@
     - start-server
     - new-relic
   environment:
-    env: {{ ENV }}
+    env: "{{ ENV }}"

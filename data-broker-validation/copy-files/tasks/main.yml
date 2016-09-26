@@ -9,5 +9,5 @@
   shell: cp /data-act/config/filebeat/filebeat-{{ ENV }}-{{ APP }}.yml /etc/filebeat/filebeat.yml
   sudo: true
 - name: Copy Filebeat config
-  shell: cp /data-act/config/filebeat/nginx-{{ ENV }}-config.conf /etc/nginx/nginx.conf 
+  shell: cp /data-act/config/nginx/nginx-{{ ENV }}-config.conf /etc/nginx/nginx.conf 
   sudo: true

@@ -3,7 +3,8 @@
   user: ec2-user
   roles:
     - copy-files
-    - start-server
+    - { role: start-server, when: APP != "jobmgr"}
+    - { role: start-jobmgr, when: APP == "jobmgr"}
     - start-new-relic
   environment:
     env: "{{ ENV }}"

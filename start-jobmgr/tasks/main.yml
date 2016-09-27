@@ -1,6 +1,8 @@
 
 ---
-- shell: /opt/logstash/bin/logstash -f /data-act/data-act-logging.conf &
+- name: start filebeat
+  shell: systemctl start filebeat
+  sudo: true
 - service: name=rabbitmq-server state=started
   sudo: true
 - rabbitmq_user: user={{ rmqUser }}
@@ -20,6 +22,6 @@
 - shell: celery -A jobQueue worker --loglevel=info --logfile=/tmp/job-queue.log --concurrency=10 --detach
   environment:
     PYTHONPATH: "/data-act/backend"
-    env: {{ env }}
+    env: "{{ ENV }}"
   args:
     chdir: /data-act/backend/dataactcore/utils/

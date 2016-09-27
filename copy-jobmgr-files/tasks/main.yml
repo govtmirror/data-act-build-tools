@@ -1,7 +1,0 @@
----
-
-- shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/config.yml /data-act/backend/dataactcore/config.yml --region us-gov-west-1"
-  sudo: true
-- shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/filebeat-{{ ENV }}-{{ APP }}.yml /etc/filebeat/filebeat.yml --region us-gov-west-1"
-  sudo: true
-

@@ -1,7 +1,4 @@
 ---
-- name: start logstash
-  shell: /opt/logstash/bin/logstash -f /data-act/data-act-logging.conf &
-  sudo: true
 - name: start filebeat
   shell: systemctl start filebeat
   sudo: true
@@ -17,5 +14,6 @@
   sudo: true
   environment:
     PYTHONPATH: "/data-act/backend"
+    env: "{{ ENV }}"
   args:
     chdir: /data-act/backend/dataact{{ APP }}/

@@ -9,3 +9,5 @@
   - copy-files
   - fsrs-cron
   - run-app
+  environment:
+    env: "{{ ENV }}"

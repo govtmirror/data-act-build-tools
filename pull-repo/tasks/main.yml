@@ -7,6 +7,12 @@
   sudo: true
 - name: assign ownership of api to ec2-user
   sudo: true
+  file: path=/data-act/backend owner=ec2-user recurse=yes
+- name: assign ownership of api to ec2-user
+  sudo: true
+  file: path=/data-act/config owner=ec2-user recurse=yes
+- name: assign ownership of api to ec2-user
+  sudo: true
   file: path=/data-act owner=ec2-user recurse=yes
 - name: assign ownership of api to ec2-user
   sudo: true

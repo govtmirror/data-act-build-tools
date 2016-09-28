@@ -6,4 +6,5 @@
   - pull-repo
   - pip-install
   - copy-files
+  - fsrs-cron
   - run-app

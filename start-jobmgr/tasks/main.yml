@@ -32,3 +32,5 @@
     env: "{{ ENV }}"
   args:
     chdir: /data-act/backend/dataactcore/utils/
+  become: true
+  become_user: ec2-user

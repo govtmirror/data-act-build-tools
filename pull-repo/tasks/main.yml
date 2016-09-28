@@ -8,3 +8,6 @@
 - name: assign ownership of api to ec2-user
   sudo: true
   file: path=/data-act owner=ec2-user recurse=yes
+- name: assign ownership of api to ec2-user
+  sudo: true
+  file: path=/tmp owner=ec2-user recurse=yes

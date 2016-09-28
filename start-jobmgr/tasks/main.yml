@@ -1,5 +1,10 @@
 
 ---
+- shell: /opt/logstash/bin/logstash -f /data-act/data-act-logging.conf &
+- name: stop filebeat
+  shell: systemctl stop filebeat
+  sudo: true
+  ignore_errors: yes
 - name: start filebeat
   shell: systemctl start filebeat
   sudo: true
@@ -13,6 +18,13 @@
                  write_priv=.*
                  state=present
   sudo: true
+- shell: pkill -f "celery worker"
+  ignore_errors: yes
+- shell: rm celeryd.pid
+  ignore_errors: yes
+  args:
+    chdir: /data-act/backend/dataactcore/utils/
+- shell: echo $env
 - name: start celery tasks
   shell: celery -A jobQueue worker --loglevel=info --logfile=/tmp/job-queue.log --concurrency=10 --detach
   environment:
@@ -20,4 +32,3 @@
     env: "{{ ENV }}"
   args:
     chdir: /data-act/backend/dataactcore/utils/
-  sudo: true

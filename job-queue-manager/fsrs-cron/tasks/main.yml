@@ -1,3 +1,3 @@
 ---
-- cron: name=PYTHONPATH env=yes value="{{ ansible_env.PYTHONPATH }}:/data-act/backend"
-- cron: name="sync fsrs data" minute="0" job="python /data-act/backend/dataactbroker/scripts/loadFSRS.py >> /tmp/fsrs.log"
+- cron: name="sync fsrs data" minute="0" user="ec2-user" job="PYTHONPATH='/data-act/backend' python3 /data-act/backend/dataactbroker/scripts/loadFSRS.py &>> /tmp/fsrs.log"
+  sudo: true

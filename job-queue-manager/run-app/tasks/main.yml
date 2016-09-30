@@ -30,4 +30,3 @@
     env: "{{ ENV }}"
   args:
     chdir: /data-act/backend/dataactcore/utils/
-  sudo: true

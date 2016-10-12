@@ -1,0 +1,164 @@
+{
+  "variable": {
+    "aws_region": {
+      "description": "The AWS region to create things in.",
+      "default": {region}
+    },
+
+    "aws_amis": {
+      "default": {
+        {region}: {ami_id}
+      }
+    },
+
+    "availability_zones": {
+      "default": {availability_zones},
+      "description": "List of availability zones, use AWS CLI to find your "
+    },
+
+    "subnets": {
+      "default": {subnets},
+      "description": "List of subnets within VPC"
+    },
+
+    "key_name": {
+      "default": {key_name},
+      "description": "SSH Key to access instance"
+    },
+
+    "val_instance_type": {
+      "default": {val_instance_type},
+      "description": "AWS instance type"
+    },
+
+    "val_asg_min": {
+      "description": "Min numbers of servers in ASG",
+      "default": {val_asg_min}
+    },
+
+    "val_asg_max": {
+      "description": "Max numbers of servers in ASG",
+      "default": {val_asg_max}
+    },
+
+    "val_asg_desired": {
+      "description": "Desired numbers of servers in ASG",
+      "default": {val_asg_desired}
+    },
+
+    "val_sec_groups": {
+      "description": "Security Group for Validator",
+      "default": {val_sec_groups}
+    },
+
+    "val_elb": {
+      "description": "Name of Validator Load Balancer",
+      "default": {val_elb}
+    },
+
+    "val_iam_profile": {
+      "description": "Name of IAM Profile for Validator",
+      "default": {val_iam_profile}
+    },
+
+    "val_user_data": {
+      "description": "Command to run at Validator instance launch",
+      "default": {val_user_data}
+    },
+
+    "val_name_prefix": {
+      "description": "Prefix for Validator ASG and LC names",
+      "default": {val_name_prefix}
+    },
+
+    "api_instance_type": {
+      "default": {api_instance_type},
+      "description": "AWS instance type"
+    },
+
+    "api_asg_min": {
+      "description": "Min numbers of servers in ASG",
+      "default": {api_asg_min}
+    },
+
+    "api_asg_max": {
+      "description": "Max numbers of servers in ASG",
+      "default": {api_asg_max}
+    },
+
+    "api_asg_desired": {
+      "description": "Desired numbers of servers in ASG",
+      "default": {api_asg_desired}
+    },
+
+    "api_sec_groups": {
+      "description": "Security Group for Broker",
+      "default": {api_sec_groups}
+    },
+
+    "api_elb": {
+      "description": "Name of API Load Balancer",
+      "default": {api_elb}
+    },
+
+    "api_iam_profile": {
+      "description": "Name of IAM Profile for Broker",
+      "default": {api_iam_profile}
+    },
+
+    "api_user_data": {
+      "description": "Command to run at API instance launch",
+      "default": {api_user_data}
+    },
+
+    "api_name_prefix": {
+      "description": "Prefix for API ASG and LC names",
+      "default": {api_name_prefix}
+    },
+
+    "jobmgr_instance_type": {
+      "default": {jobmgr_instance_type},
+      "description": "AWS instance type"
+    },
+
+    "jobmgr_asg_min": {
+      "description": "Min numbers of servers in ASG",
+      "default": {jobmgr_asg_min}
+    },
+
+    "jobmgr_asg_max": {
+      "description": "Max numbers of servers in ASG",
+      "default": {jobmgr_asg_max}
+    },
+
+    "jobmgr_asg_desired": {
+      "description": "Desired numbers of servers in ASG",
+      "default": {jobmgr_asg_desired}
+    },
+
+    "jobmgr_sec_groups": {
+      "description": "Security Group for JobManager",
+      "default": {jobmgr_sec_groups}
+    },
+
+    "jobmgr_elb": {
+      "description": "Name of JobManager Load Balancer",
+      "default": {jobmgr_elb}
+    },
+
+    "jobmgr_iam_profile": {
+      "description": "Name of IAM Profile for JobManager",
+      "default": {jobmgr_iam_profile}
+    },
+
+    "jobmgr_user_data": {
+      "description": "Command to run at JobMgr instance launch",
+      "default": {jobmgr_user_data}
+    },
+
+    "jobmgr_name_prefix": {
+      "description": "Prefix for JobManager ASG and LC names",
+      "default": {jobmgr_name_prefix}
+    }
+  }
+}

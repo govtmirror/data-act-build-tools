@@ -1,0 +1,26 @@
+{ 
+	"provisioners": [
+		{ 
+			"playbook_dir": "./",
+		 	"extra_arguments": "--extra-vars 'BRANCH={branch} ENV={environment}'",
+		  	"inventory_groups": "{inventory_groups}",
+		   	"type": "ansible-local", "playbook_file": "app-instance-image.yml" 
+		}
+	], 
+	"builders": [
+		{ 
+			"source_ami": "{source_ami}", 
+			"tags": { 
+				"current": "True", 
+				"base": "False", 
+				"type": "Application" , 
+				"environment": "{environment}"
+			}, 
+			"ssh_username": "{ssh_username}",
+			"region": "{region}",
+			"ami_name": "{ami_name}",
+			"instance_type": "instance_type",
+			"type": "amazon-ebs"
+		}
+	]
+}

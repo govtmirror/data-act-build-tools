@@ -1,8 +1,6 @@
 ---
 - hosts: frontend_dev
   user: ec2-user
-  sudo: true
-  sudo_user: 
   roles:
   - copy-frontend
   - start-nginx

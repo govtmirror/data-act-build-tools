@@ -1,0 +1,9 @@
+---
+- hosts: govcloud_instance_launch
+  user: ec2-user
+  roles:
+    - copy-files
+    - start-frontend
+    - start-new-relic
+  environment:
+    env: "{{ ENV }}"

@@ -1,0 +1,5 @@
+---
+- hosts: govcloud_frontend_base_image
+  user: ec2-user
+  roles:
+  - frontend-base-image-installs

@@ -1,0 +1,7 @@
+---
+- name: Copy frontend files
+  shell: "aws s3 cp s3://da-ci-artifacts/frontend/dev/ /data-act/frontend --region us-gov-west-1 --recursive"
+  sudo: true
+- name: Checkout config from git
+  git: repo=git@github.com:fedspendingtransparency/data-act-broker-config.git dest=/data-act/config accept_hostkey=true force=yes key_file="/home/ec2-user/.ssh/id_rsa"
+  sudo: true

@@ -1,11 +1,8 @@
 ---
-- hosts: dev_servers
-  user: ubuntu
+- hosts: frontend_dev
+  user: ec2-user
   sudo: true
   sudo_user: 
   roles:
-  - nodesource.node
-  - install-git
-  - pull-repo
-  - npm-install
-  - run-gulp
+  - copy-frontend
+  - start-nginx

@@ -2,9 +2,11 @@
 - name: remove old frontend backed up files
   shell: "rm -rf /var/www-old"
   sudo: true
+  ignore_errors: yes
 - name: backup old frontend served files
   shell: "mv /var/www /var/www-old"
   sudo: true
+  ignore_errors: yes
 - name: Copy frontend files
   shell: "aws s3 cp s3://da-ci-artifacts/frontend/{{ ENV }}/{{ BUILD_ID }}/public /var/www --region us-gov-west-1 --recursive"
   sudo: true

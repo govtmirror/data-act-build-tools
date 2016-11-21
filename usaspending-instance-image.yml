@@ -1,0 +1,16 @@
+---
+- hosts: govcloud_instance_image
+  user: ec2-user
+  roles:
+  - pull-repo
+  - add-hostfile
+  tasks:
+    - name: Install backend packages based on requirements.txt
+      sudo: true
+      pip: chdir=/data-act/backend 
+           requirements="requirements.txt" 
+           executable=pip3.5
+  vars:
+    REPO: https://github.com/fedspendingtransparency/usaspending-api.git
+    BRANCH: master
+    

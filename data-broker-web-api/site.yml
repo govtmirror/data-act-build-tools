@@ -1,5 +1,5 @@
 ---
-- hosts: data_broker_govcloud_dev_newvpc
+- hosts: da_broker_api_{{ ENV }}
   user: ec2-user
   roles:
     - yum-installs

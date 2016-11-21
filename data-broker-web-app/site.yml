@@ -1,5 +1,5 @@
 ---
-- hosts: frontend_{{ ENV }}
+- hosts: da_broker_frontend_{{ ENV }}
   user: ec2-user
   roles:
   - copy-frontend

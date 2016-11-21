@@ -1,5 +1,5 @@
 ---
-- hosts: govcloud_base_image
+- hosts: 52.222.51.183
   user: ec2-user
   roles:
   - base-image-installs-python35

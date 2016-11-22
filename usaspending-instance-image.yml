@@ -10,6 +10,8 @@
       pip: chdir=/data-act/backend 
            requirements="requirements.txt" 
            executable=pip3.5
+    - name: runserver
+      shell: 'python3.5 /data-act/backend/manage.py runserver 0:8000'
   vars:
     REPO: https://github.com/fedspendingtransparency/usaspending-api.git
     BRANCH: master

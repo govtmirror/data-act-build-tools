@@ -5,14 +5,40 @@
   - pull-repo
   - add-hostfile
   tasks:
-    - name: Install backend packages based on requirements.txt
+#    - name: Install backend packages based on requirements.txt
+#      sudo: true
+#      pip: chdir=/data-act/backend 
+#           requirements="requirements.txt" 
+#           executable=pip3.5
+#    - name: Install server packages based on server_requirements.txt
+#      sudo: true
+#      pip: chdir=/data-act/backend requirements="server_requirements.txt" executable=pip3.5
+#    - name: Install server packages based on legacy_requirements.txt.
+#      sudo: true
+#      pip: chdir=/data-act/backend requirements="legacy_requirements.txt" executable=pip2
+    - name: copy Nginx config
       sudo: true
-      pip: chdir=/data-act/backend 
-           requirements="requirements.txt" 
-           executable=pip3.5
-    - name: runserver
-      shell: 'python3.5 /data-act/backend/manage.py runserver 0:8000'
+      shell: cp /data-act/config/nginx/nginx_dev_dsapi.conf /etc/nginx/nginx.conf 
+    - shell: pkill supervisord
+      sudo: true
+      ignore_errors: yes
+    - name: duplicate config file to uwsgi_db.ini
+      sudo: true
+      shell: cp /data-act/backend/config/uwsgi.ini /data-act/backend/config/uwsgi_db.ini
+    - name: copy user-level environment variable to temp text file...
+      sudo: false
+      shell: echo env=DATABASE_URL=$DATABASE_URL > /data-act/backend/config/temp.txt
+    - name: concatenate the duplicate config and the env var
+      sudo: true
+      shell: cat /data-act/backend/config/temp.txt >> /data-act/backend/config/uwsgi_db.ini   
+    - name: start supervisord
+      shell: supervisord -c /data-act/backend/config/supervisord.conf &
+      sudo: true  
+      environment:
+          PYTHONPATH: "/data-act/backend"
+      args:
+          chdir: /data-act/backend/usaspending_api/  
   vars:
     REPO: https://github.com/fedspendingtransparency/usaspending-api.git
-    BRANCH: master
+    BRANCH: dev
     

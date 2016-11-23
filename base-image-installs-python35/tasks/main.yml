@@ -1,0 +1,54 @@
+---
+
+- name: upgrade all packages
+  sudo: true
+  yum: name=* state=latest
+- name: install git
+  sudo: true
+  yum: name=git
+- name: install wget
+  yum: name=wget
+  sudo: true
+- name: install python development libraries
+  sudo: true
+  yum: name=python-devel.x86_64
+- name: install the epel repo from a remote repo
+  sudo: true
+  yum: name=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm state=present
+- name: install the IUS repo from a remote repo
+  sudo: true
+  yum: name=https://centos7.iuscommunity.org/ius-release.rpm
+- name: install pip2
+  sudo: true
+  yum: name=python-pip
+- name: install python3.5
+  yum: name=python35u
+  sudo: true
+- name: install python3.5 libs
+  yum: name=python35u-libs
+  sudo: true
+- name: install python3.5 development libraries
+  yum: name=python35u-devel 
+  sudo: true
+- name: install pip3.5
+  yum: name=python35u-pip
+  sudo: true
+- name: install java
+  sudo: true
+  yum: name=java-1.7.0-openjdk
+- name: install aws cli
+  pip: name=awscli
+  sudo: true
+- name: copy logstash repo info
+  shell: "rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch"
+  shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/logstash.repo /etc/yum.repos.d/logstash.repo --region us-gov-west-1"
+  sudo: true
+- name: install logstash repo
+  yum: name=logstash
+  sudo: true
+- name: install unzip
+  yum: name=unzip
+  sudo: true
+- name: install ansible
+  yum: name=ansible
+  sudo: true

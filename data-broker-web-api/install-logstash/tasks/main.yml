@@ -4,7 +4,7 @@
   shell: "rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch"
   sudo: true
 - name: Copy Elastic Repo info
-  shell: cp /data-act/config/filebeat/elastic_beats.repo /etc/yum.repos.d/elastic-beats.repo
+  shell: cp /data-act/config/filebeat/elastic-beats.repo /etc/yum.repos.d/elastic-beats.repo
   sudo: true
 - name: install repo
   yum: name=logstash

@@ -1,5 +1,5 @@
 ---
-- hosts: "{{ HOST }}"
+- hosts: thingy
   user: ec2-user
   roles:
   - pull-repo
@@ -28,7 +28,7 @@
       shell: echo env=DATABASE_URL=$DATABASE_URL > /data-act/backend/config/temp.txt
     - name: concatenate the duplicate config and the env var
       sudo: true
-      shell: echo env=DATABASE_URL=$DATABASE_URL >> /data-act/backend/config/uwsgi_db.ini
+      shell: cat /data-act/backend/config/temp.txt >> /data-act/backend/config/uwsgi_db.ini
     - name: add static url from s3
       lineinfile:
         dest: /data-act/backend/usaspending_api/settings.py

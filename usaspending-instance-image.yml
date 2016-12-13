@@ -1,5 +1,5 @@
 ---
-- hosts: {{ HOST }}
+- hosts: "{{ HOST }}"
   user: ec2-user
   roles:
   - pull-repo

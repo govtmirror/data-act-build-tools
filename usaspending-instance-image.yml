@@ -1,5 +1,5 @@
 ---
-- hosts: thingy
+- hosts: {{ HOST }}
   user: ec2-user
   roles:
   - pull-repo
@@ -47,5 +47,5 @@
           chdir: /data-act/backend/usaspending_api/  
   vars:
     REPO: https://github.com/fedspendingtransparency/usaspending-api.git
-    BRANCH: "{{ BRANCH_EXTRA_VAR }}"
+    BRANCH: "{{ BRANCH }}"
   

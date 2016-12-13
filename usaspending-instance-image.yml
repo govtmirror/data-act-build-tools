@@ -34,7 +34,8 @@
         dest: /data-act/backend/usaspending_api/settings.py
         regexp: '.*STATIC_URL =.*'
         line: "STATIC_URL = 'http://ds-api-assets.s3-website-us-gov-west-1.amazonaws.com/'"
-    - shell: stop supervisord
+    - name: stop supervisord
+      shell: pkill supervisord
       sudo: true
       ignore_errors: yes    
     - name: start supervisord

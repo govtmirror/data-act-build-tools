@@ -1,19 +1,21 @@
 ---
 - name: Checkout backend from git
   sudo: true
-  git: repo=https://github.com/fedspendingtransparency/data-act-broker-backend.git version={{ BRANCH }}  dest=/data-act/backend accept_hostkey=true force=yes
+  git: repo={{ REPO }}
+       version={{ BRANCH }}  
+       dest=/data-act/backend 
+       accept_hostkey=true 
+       force=yes
 - name: Checkout config from git
-  git: repo=git@github.com:fedspendingtransparency/data-act-broker-config.git dest=/data-act/config accept_hostkey=true force=yes key_file="/home/ec2-user/.ssh/id_rsa"
+  git: repo=git@github.com:fedspendingtransparency/data-act-broker-config.git 
+       dest=/data-act/config 
+       accept_hostkey=true 
+       force=yes 
+       key_file="/home/ec2-user/.ssh/id_rsa"
   sudo: true
-- name: assign ownership of api to ec2-user
-  sudo: true
-  file: path=/data-act/backend owner=ec2-user recurse=yes
-- name: assign ownership of api to ec2-user
-  sudo: true
-  file: path=/data-act/config owner=ec2-user recurse=yes
 - name: assign ownership of api to ec2-user
   sudo: true
   file: path=/data-act owner=ec2-user recurse=yes
-- name: assign ownership of api to ec2-user
+- name: assign ownership of tmp to ec2-user
   sudo: true
   file: path=/tmp owner=ec2-user recurse=yes

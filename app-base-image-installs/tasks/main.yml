@@ -31,12 +31,16 @@
     name: newrelic-sysmond
     state: latest
   sudo: true
+- name: pull data act build tools repo
+  git: repo=https://github.com/fedspendingtransparency/data-act-build-tools.git
+       version=add-logstash-repo
+       dest=/home/ec2-user/data-act-build-tools
 - name: copy filebeat repo info
-  shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/elastic-beats.repo /etc/yum.repos.d/elastic-beats.repo --region us-gov-west-1"
   sudo: true
+  shell: "cp /home/ec2-user/data-act-build-tools/elastic-beats.repo /etc/yum.repos.d/elastic-beats.repo"
 - name: install filebeat repo
-  yum: name=filebeat
   sudo: true
+  yum: name=filebeat
 - name: install erlang
   sudo: true
   yum: name=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm state=present

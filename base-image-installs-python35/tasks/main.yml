@@ -39,9 +39,13 @@
 - name: install aws cli
   pip: name=awscli
   sudo: true
+- name: pull data act build tools repo
+  git: repo=https://github.com/fedspendingtransparency/data-act-build-tools.git
+       version=add-logstash-repo
+       dest=/home/ec2-user/data-act-build-tools
 - name: copy logstash repo info
   shell: "rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch"
-  shell: "aws s3 cp s3://{{ ENV }}-data-act-submission/config/logstash.repo /etc/yum.repos.d/logstash.repo --region us-gov-west-1"
+  shell: "cp /home/ec2-user/data-act-build-tools/logstash.repo /etc/yum.repos.d/logstash.repo"
   sudo: true
 - name: install logstash repo
   yum: name=logstash

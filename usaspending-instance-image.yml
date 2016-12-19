@@ -1,5 +1,15 @@
 ---
 - hosts: "{{ HOST }}"
+
+# If BRANCH = master or stg, you MUST provide a DOMAIN_NAME for ALLOWED_HOSTS
+
+  vars:
+    REPO: https://github.com/fedspendingtransparency/usaspending-api.git
+    BRANCH: "{{ BRANCH }}"
+    DOMAIN: "{{ DOMAIN_NAME }}"
+    CODE_HOME: /data-act/backend
+    SETTINGS_PY: "{{ CODE_HOME }}/usaspending_api/settings.py"
+
   user: ec2-user
   roles:
   - pull-repo
@@ -17,9 +27,24 @@
     - name: install python packages based on legacy_requirements.txt
       sudo: true
       pip: chdir=/data-act/backend requirements="legacy_requirements.txt" executable=pip2
+    - name: (Remove Later) ensure nginx running as ec2-user
+      lineinfile:
+        dest: /data-act/config/nginx/nginx_ds_api.conf
+        regexp: '\s*user.*;'
+        line: 'user ec2-user;'
     - name: copy nginx config
       sudo: true
-      shell: cp /data-act/config/nginx/nginx_ds_api.conf /etc/nginx/nginx.conf 
+      shell: cp /data-act/config/nginx/nginx_ds_api.conf /etc/nginx/nginx.conf
+    
+    - name: ensure the correct directory structure for tmp nginx files
+      file: 
+        path: /var/lib/nginx/tmp
+        state: directory
+        owner: ec2-user
+        mode: "u+wrx"
+        recurse: yes
+      become: true
+
     - name: duplicate config file to uwsgi_db.ini
       sudo: true
       shell: cp /data-act/backend/config/uwsgi.ini /data-act/backend/config/uwsgi_db.ini
@@ -29,11 +54,24 @@
     - name: concatenate the duplicate config and the env var
       sudo: true
       shell: cat /data-act/backend/config/temp.txt >> /data-act/backend/config/uwsgi_db.ini
+
     - name: add static url from s3
       lineinfile:
-        dest: /data-act/backend/usaspending_api/settings.py
-        regexp: '.*STATIC_URL =.*'
+        dest: "{{ SETTINGS_PY }}"
+        regexp: '\s*STATIC_URL =.*'
         line: "STATIC_URL = 'http://ds-api-assets.s3-website-us-gov-west-1.amazonaws.com/'"
+
+    - name: turn debug off in production or staging, add host to ALLOWED_HOSTS
+      when: BRANCH == 'master' or BRANCH == 'stg'
+      lineinfile:
+        dest: "{{ SETTINGS_PY }}"
+        regexp: '\s*DEBUG =.*'
+        line: 'DEBUG = False'
+      lineinfile:
+        dest: "{{ SETTINGS_PY }}"
+        regexp: '\s*ALLOWED_HOSTS =.*'
+        line: "ALLOWED_HOSTS = ['{{ DOMAIN }}']"
+
     - name: stop supervisord
       shell: pkill supervisord
       sudo: true
@@ -42,10 +80,7 @@
       shell: supervisord -c /data-act/backend/config/supervisord.conf &
       sudo: true  
       environment:
-          PYTHONPATH: "/data-act/backend"
+        PYTHONPATH: "/data-act/backend"
       args:
-          chdir: /data-act/backend/usaspending_api/  
-  vars:
-    REPO: https://github.com/fedspendingtransparency/usaspending-api.git
-    BRANCH: "{{ BRANCH }}"
+        chdir: /data-act/backend/usaspending_api/  
   

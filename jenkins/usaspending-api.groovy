@@ -44,7 +44,6 @@ usaspending_api.each { environment, params ->
 
         configure { project -> // Slack Notifications
             project / publishers << 'jenkins.plugins.slack.SlackNotifier' {
-                authToken('3rw4ujND2zCluJML48r4Vk6G')
                 room('#datastore')
                 notifySuccess('true')
                 notifyNotBuilt('true')

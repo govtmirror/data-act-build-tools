@@ -61,12 +61,15 @@
         regexp: '\s*STATIC_URL =.*'
         line: "STATIC_URL = 'http://ds-api-assets.s3-website-us-gov-west-1.amazonaws.com/'"
 
-    - name: turn debug off in production or staging, add host to ALLOWED_HOSTS
+    - name: turn debug off in production or staging
       when: BRANCH == 'master' or BRANCH == 'stg'
       lineinfile:
         dest: "{{ SETTINGS_PY }}"
         regexp: '\s*DEBUG =.*'
-        line: 'DEBUG = False'
+        line: "DEBUG = False"
+
+    - name: add host to ALLOWED_HOSTS
+      when: BRANCH == 'master' or BRANCH == 'stg'
       lineinfile:
         dest: "{{ SETTINGS_PY }}"
         regexp: '\s*ALLOWED_HOSTS =.*'
